@@ -20,10 +20,6 @@ padding:12px;
 margin:10px 0;
 }
 
-button{
-cursor:pointer;
-}
-
 </style>
 
 </head>
@@ -32,19 +28,15 @@ cursor:pointer;
 
 <h1>Photo Portal</h1>
 
-<input id="email"
-type="email"
-placeholder="Email">
+<input id="email" type="email" placeholder="Email">
 
-<input id="password"
-type="password"
-placeholder="Password">
+<input id="password" type="password" placeholder="Password">
 
-<button onclick="signup()">
+<button id="signupBtn">
 Signup
 </button>
 
-<button onclick="login()">
+<button id="loginBtn">
 Login
 </button>
 
@@ -60,81 +52,62 @@ getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword
 }
-
-from
-"https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-
+from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
 const firebaseConfig = {
-
-apiKey:
-"AIzaSyBBPR2EoR0kVSQoySb9BLgVFgvRGimY1s0",
-
-authDomain:
-"photo-portal-fb066.firebaseapp.com",
-
-projectId:
-"photo-portal-fb066",
-
-appId:
+apiKey: "AIzaSyBBPR2EoR0kVSQoySb9BLgVFgvRGimY1s0",
+authDomain: "photo-portal-fb066.firebaseapp.com",
+projectId: "photo-portal-fb066",
 appId: "1:985178328578:web:77802f9494a2a9e4c2e11b",
-
 };
 
-const app =
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-const auth =
-getAuth(app);
-
-
-window.signup=
-async()=>{
+document
+.getElementById("signupBtn")
+.onclick = async ()=>{
 
 try{
 
-await
-createUserWithEmailAndPassword(
+await createUserWithEmailAndPassword(
 auth,
 email.value,
 password.value
 );
 
-msg.innerText=
+msg.innerText =
 "Signup Success";
 
 }
-
 catch(e){
 
-msg.innerText=
+msg.innerText =
 e.message;
 
 }
 
 };
 
-
-window.login=
-async()=>{
+document
+.getElementById("loginBtn")
+.onclick = async ()=>{
 
 try{
 
-await
-signInWithEmailAndPassword(
+await signInWithEmailAndPassword(
 auth,
 email.value,
 password.value
 );
 
-msg.innerText=
+msg.innerText =
 "Login Success";
 
 }
-
 catch(e){
 
-msg.innerText=
+msg.innerText =
 e.message;
 
 }
@@ -144,5 +117,4 @@ e.message;
 </script>
 
 </body>
-
 </html>
