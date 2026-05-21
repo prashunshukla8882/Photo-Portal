@@ -40,15 +40,108 @@ placeholder="Email">
 type="password"
 placeholder="Password">
 
-<button>
-Login
-</button>
-
-<button>
+<button onclick="signup()">
 Signup
 </button>
 
-<p>Firebase connection coming next</p>
+<button onclick="login()">
+Login
+</button>
+
+<p id="msg"></p>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyBBPR2EoR0kVSQoySb9BLgVFgvRGimY1s0",
+
+authDomain:
+"photo-portal-fb066.firebaseapp.com",
+
+projectId:
+"photo-portal-fb066",
+
+appId:
+appId: "1:985178328578:web:77802f9494a2a9e4c2e11b",
+
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+
+window.signup=
+async()=>{
+
+try{
+
+await
+createUserWithEmailAndPassword(
+auth,
+email.value,
+password.value
+);
+
+msg.innerText=
+"Signup Success";
+
+}
+
+catch(e){
+
+msg.innerText=
+e.message;
+
+}
+
+};
+
+
+window.login=
+async()=>{
+
+try{
+
+await
+signInWithEmailAndPassword(
+auth,
+email.value,
+password.value
+);
+
+msg.innerText=
+"Login Success";
+
+}
+
+catch(e){
+
+msg.innerText=
+e.message;
+
+}
+
+};
+
+</script>
 
 </body>
 
