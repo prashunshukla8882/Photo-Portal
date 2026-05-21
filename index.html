@@ -1,30 +1,209 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+
+<meta charset="UTF-8">
+
+<title>Photo Portal</title>
+
+<style>
+
+body{
+font-family:Arial;
+max-width:420px;
+margin:auto;
+padding:40px;
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:12px;
+margin:10px 0;
+cursor:pointer;
+}
+
+#msg{
+margin-top:15px;
+font-weight:bold;
+text-align:center;
+}
+
+</style>
+
+</head>
+
 <body>
 
 <h1>Photo Portal</h1>
 
-<input id="email" placeholder="Email">
+<input
+id="email"
+type="email"
+placeholder="Enter Email">
 
-<input id="password" placeholder="Password">
+<input
+id="password"
+type="password"
+placeholder="Enter Password">
 
-<button onclick="signup()">
+<button id="signupBtn">
 Signup
+</button>
+
+<button id="loginBtn">
+Login
 </button>
 
 <p id="msg"></p>
 
-<script>
+<script type="module">
 
-function signup(){
+import {
+initializeApp
+}
 
-document
-.getElementById("msg")
-.innerText =
-"Button Works";
+from
+"https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+
+import {
+
+getAuth,
+
+createUserWithEmailAndPassword,
+
+signInWithEmailAndPassword
 
 }
+
+from
+"https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyBBPR2EoR0kVSQoySb9BLgVFgvRGimY1s0",
+
+authDomain:
+"photo-portal-fb066.firebaseapp.com",
+
+projectId:
+"photo-portal-fb066",
+
+storageBucket:
+"photo-portal-fb066.firebasestorage.app",
+
+messagingSenderId:
+"985178328578",
+
+appId:
+"1:985178328578:web:77802f9494a2a9e4c2e11b"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const msg =
+document.getElementById("msg");
+
+document
+.getElementById("signupBtn")
+.addEventListener(
+"click",
+
+async ()=>{
+
+try{
+
+await
+createUserWithEmailAndPassword(
+
+auth,
+
+document
+.getElementById("email")
+.value,
+
+document
+.getElementById("password")
+.value
+
+);
+
+msg.innerText =
+"Signup Success ✅";
+
+}
+
+catch(error){
+
+msg.innerText =
+error.message;
+
+}
+
+}
+
+);
+
+
+document
+.getElementById("loginBtn")
+.addEventListener(
+
+"click",
+
+async ()=>{
+
+try{
+
+await
+signInWithEmailAndPassword(
+
+auth,
+
+document
+.getElementById("email")
+.value,
+
+document
+.getElementById("password")
+.value
+
+);
+
+msg.innerText =
+"Login Success ✅";
+
+}
+
+catch(error){
+
+msg.innerText =
+error.message;
+
+}
+
+}
+
+);
 
 </script>
 
