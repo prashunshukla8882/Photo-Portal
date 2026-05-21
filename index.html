@@ -1,120 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<meta charset="UTF-8">
-<title>Photo Portal</title>
-
-<style>
-
-body{
-font-family:Arial;
-max-width:420px;
-margin:auto;
-padding:40px;
-}
-
-input,button{
-width:100%;
-padding:12px;
-margin:10px 0;
-}
-
-</style>
-
-</head>
-
 <body>
 
 <h1>Photo Portal</h1>
 
-<input id="email" type="email" placeholder="Email">
+<input id="email" placeholder="Email">
 
-<input id="password" type="password" placeholder="Password">
+<input id="password" placeholder="Password">
 
-<button id="signupBtn">
+<button onclick="signup()">
 Signup
-</button>
-
-<button id="loginBtn">
-Login
 </button>
 
 <p id="msg"></p>
 
-<script type="module">
+<script>
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-
-import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword
-}
-from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyBBPR2EoR0kVSQoySb9BLgVFgvRGimY1s0",
-authDomain: "photo-portal-fb066.firebaseapp.com",
-projectId: "photo-portal-fb066",
-appId: "1:985178328578:web:77802f9494a2a9e4c2e11b",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+function signup(){
 
 document
-.getElementById("signupBtn")
-.onclick = async ()=>{
-
-try{
-
-await createUserWithEmailAndPassword(
-auth,
-email.value,
-password.value
-);
-
-msg.innerText =
-"Signup Success";
+.getElementById("msg")
+.innerText =
+"Button Works";
 
 }
-catch(e){
-
-msg.innerText =
-e.message;
-
-}
-
-};
-
-document
-.getElementById("loginBtn")
-.onclick = async ()=>{
-
-try{
-
-await signInWithEmailAndPassword(
-auth,
-email.value,
-password.value
-);
-
-msg.innerText =
-"Login Success";
-
-}
-catch(e){
-
-msg.innerText =
-e.message;
-
-}
-
-};
 
 </script>
 
 </body>
+
 </html>
